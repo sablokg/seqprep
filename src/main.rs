@@ -437,9 +437,9 @@ fn render_svg(
             // baseline at y=88 gives a good visual fill of the box for
             // most sans-serif capitals.
             let sx = draw_w / 100.0;
-            let sy = h_px / 100.0;
+            let sy = h_px / 72.0; // cap-height ~0.72 em: glyph spans y=16..88 of the 100-unit box
             let tx = col_x0 + pad_x;
-            let ty = y_cursor;
+            let ty = y_cursor - 16.0 * sy;
             let _ = write!(
                 svg,
                 r##"<g transform="translate({tx:.2},{ty:.2}) scale({sx:.4},{sy:.4})"><text x="0" y="88" font-size="100" font-weight="bold" textLength="100" lengthAdjust="spacingAndGlyphs" fill="{color}">{sym}</text></g>
